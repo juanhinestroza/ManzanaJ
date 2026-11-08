@@ -446,6 +446,7 @@ button { font: inherit; color: inherit; }
   </article>
 </div>
 
+<script data-goatcounter="https://manzanaj.goatcounter.com/count" data-goatcounter-settings='{"no_onload": true, "no_events": true}' async src="https://gc.zgo.at/count.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 (function () {
@@ -686,6 +687,30 @@ button { font: inherit; color: inherit; }
     }, 250);
   });
 
+  /* ---------- Visitas ---------- */
+  // GoatCounter cuenta la portada, cada cuento que se abre y cada descarga. El panel es privado.
+  var pendientes = [], ultimaVista = null, primeraCuenta = true;
+  function contar(datos) {
+    // La procedencia (Instagram, WhatsApp…) solo cuenta en la primera vista; lo demás es navegación interna.
+    if (primeraCuenta) primeraCuenta = false; else datos.referrer = "";
+    var gc = window.goatcounter;
+    if (gc && gc.count) gc.count(datos); else pendientes.push(datos);
+  }
+  var guionGc = document.querySelector("script[data-goatcounter]");
+  if (guionGc) guionGc.addEventListener("load", function () {
+    var lote = pendientes;
+    pendientes = [];
+    lote.forEach(function (d) { window.goatcounter.count(d); });
+  });
+  function contarVista(clave, titulo) {
+    if (clave === ultimaVista) return;
+    ultimaVista = clave;
+    contar({ path: location.pathname + clave, title: titulo });
+  }
+  $("descargar").addEventListener("click", function () {
+    if (actual) contar({ path: "descarga/" + actual.slug, title: "Descarga: " + actual.titulo, event: true });
+  });
+
   $("reintentar").addEventListener("click", function () { if (actual) mostrarLector(actual); });
   function alInicio(e) {
     e.preventDefault();
@@ -699,7 +724,13 @@ button { font: inherit; color: inherit; }
     var slug = decodeURIComponent(location.hash.replace(/^#/, ""));
     var obra = null;
     for (var i = 0; i < catalogo.length; i++) if (catalogo[i].slug === slug) obra = catalogo[i];
-    if (obra) mostrarLector(obra); else mostrarIndice(slug === "indice" ? "indice" : null);
+    if (obra) {
+      mostrarLector(obra);
+      contarVista("#" + obra.slug, obra.titulo);
+    } else {
+      mostrarIndice(slug === "indice" ? "indice" : null);
+      contarVista("", NOMBRE_SITIO);
+    }
   }
   window.addEventListener("hashchange", enrutar);
   pintarIndice();
