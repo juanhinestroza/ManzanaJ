@@ -10,52 +10,64 @@
 <meta property="og:description" content="Escritos de Juan Hinestroza.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 22c-6-5-20-4-22 10s8 28 22 28 24-14 22-28-16-15-22-10z' fill='%23B0222A'/%3E%3Ctext x='24' y='30' font-family='Georgia,serif' font-size='30' fill='%231B1B17'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" href="img/manzana.webp" fetchpriority="high">
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&family=Special+Elite&display=swap">
 <style>
-/* Layout: cartel de galería. La manzana pintada (con una J por tallo) junto al nombre en gran formato; debajo, el índice como lista de obras con su mancha de color; el lector cuelga las hojas del PDF en el muro. */
+/* Collage crudo, casi nadaísta: cartón de fondo, cartel a tinta gastada, máquina de escribir,
+   rotulador rojo, cinta de enmascarar y grabados pegados como recortes. */
 :root {
-  --muro: #E8EBDE;
-  --tinta: #1B1B17;
-  --gris: #5E6356;
-  --filete: #CBD0BD;
-  --manzana: #B0222A;
-  --hoja: #4D6A2C;
-  --sombra: rgba(27, 27, 23, 0.18);
-  --f-marca: "Gloock", "Bodoni 72", Didot, Georgia, serif;
-  --f-texto: "Literata", Georgia, "Times New Roman", serif;
-  --f-maquina: "Courier Prime", "Courier New", Courier, monospace;
-  --ancho: 60rem;
+  --pared: #CEC6B4;
+  --tinta: #191714;
+  --gris: #4B463F;
+  --rojo: #9E1D17;
+  --rojo-vivo: #B3241E;
+  --papel: #F1EBDD;
+  --tinta-papel: #1B1915;
+  --gris-papel: #5A5348;
+  --cinta: rgba(224, 210, 172, 0.84);
+  --sombra: rgba(30, 20, 8, 0.34);
+  --textura: url("img/pared-claro.webp");
+  --f-cartel: "Anton", Impact, "Arial Narrow Bold", sans-serif;
+  --f-maquina: "Special Elite", "Courier New", Courier, monospace;
+  --f-texto: "Courier Prime", "Courier New", Courier, monospace;
+  --f-mano: "Permanent Marker", "Marker Felt", "Segoe Print", cursive;
+  --ancho: 70rem;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --muro: #13150F;
-    --tinta: #E9E7DC;
-    --gris: #A0A595;
-    --filete: #2B2F24;
-    --manzana: #E2474E;
-    --hoja: #8FB264;
-    --sombra: rgba(0, 0, 0, 0.6);
+    --pared: #1D1B17;
+    --tinta: #ECE5D4;
+    --gris: #ABA392;
+    --rojo: #EA5A4F;
+    --rojo-vivo: #EA5A4F;
+    --cinta: rgba(214, 200, 160, 0.8);
+    --sombra: rgba(0, 0, 0, 0.62);
+    --textura: url("img/pared-oscuro.webp");
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --muro: #13150F;
-  --tinta: #E9E7DC;
-  --gris: #A0A595;
-  --filete: #2B2F24;
-  --manzana: #E2474E;
-  --hoja: #8FB264;
-  --sombra: rgba(0, 0, 0, 0.6);
+  --pared: #1D1B17;
+  --tinta: #ECE5D4;
+  --gris: #ABA392;
+  --rojo: #EA5A4F;
+  --rojo-vivo: #EA5A4F;
+  --cinta: rgba(214, 200, 160, 0.8);
+  --sombra: rgba(0, 0, 0, 0.62);
+  --textura: url("img/pared-oscuro.webp");
   color-scheme: dark;
 }
 
+html { background-color: var(--pared); }
 body {
-  background-color: var(--muro);
+  background-color: var(--pared);
+  background-image: var(--textura);
+  background-size: 512px 512px;
   color: var(--tinta);
   font-family: var(--f-texto);
   font-size: 17px;
@@ -68,11 +80,12 @@ body::before {
   inset: 0 0 auto;
   height: env(safe-area-inset-top, 0px);
   z-index: 10;
-  background: var(--muro);
+  background-color: var(--pared);
+  background-image: var(--textura);
 }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--manzana); outline-offset: 3px; border-radius: 2px; }
+:focus-visible { outline: 3px solid var(--rojo-vivo); outline-offset: 4px; }
 
 .marco {
   max-width: var(--ancho);
@@ -80,197 +93,259 @@ button { font: inherit; color: inherit; }
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.columna { max-width: 44rem; }
-
-.maquina {
-  font-family: var(--f-maquina);
-  font-size: 0.8125rem;
-  letter-spacing: 0.02em;
-  color: var(--gris);
+.gastado {
+  -webkit-mask-image: url("img/desgaste.png");
+  mask-image: url("img/desgaste.png");
+  -webkit-mask-size: 400px 400px;
+  mask-size: 400px 400px;
 }
-.rotulo { text-transform: uppercase; letter-spacing: 0.2em; }
+.cinta-sup { position: relative; }
+.cinta-sup::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: -0.6rem;
+  width: 3.6rem;
+  height: 1.1rem;
+  transform: translateX(-50%) rotate(-5deg);
+  background: var(--cinta);
+  clip-path: polygon(0 14%, 7% 0, 14% 12%, 22% 2%, 31% 11%, 41% 0, 52% 12%, 62% 1%, 73% 11%, 83% 0, 92% 12%, 100% 3%, 100% 88%, 93% 100%, 85% 87%, 75% 99%, 65% 86%, 55% 100%, 45% 88%, 35% 98%, 25% 86%, 15% 100%, 7% 88%, 0 97%);
+}
+.raya { display: block; width: 100%; height: 16px; color: var(--tinta); overflow: visible; }
+.raya path { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------- Portada ---------- */
 .portada {
-  padding-block: clamp(1.5rem, 6vw, 4rem) 2rem;
+  padding-block: clamp(1.4rem, 5vw, 3.25rem) 0.5rem;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.5rem;
-  align-items: end;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.78fr);
+  grid-template-areas: "marca marca" "info manzana";
+  column-gap: 1rem;
+  row-gap: 0.75rem;
+  align-items: start;
 }
-.cuadro {
-  justify-self: end;
-  width: min(78%, 22rem);
-  max-width: 100%;
-  aspect-ratio: 1;
-  margin-bottom: -2.5rem;
-}
-.cuadro canvas { display: block; width: 100%; height: 100%; }
-.titular { display: grid; gap: 1.25rem; min-width: 0; }
 .marca {
+  grid-area: marca;
   margin: 0;
-  font-family: var(--f-marca);
+  font-family: var(--f-cartel);
   font-weight: 400;
-  font-size: clamp(3.4rem, 16vw, 7rem);
-  line-height: 0.86;
-  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-size: clamp(3.6rem, 20vw, 10.5rem);
+  line-height: 0.82;
   white-space: nowrap;
+  transform: rotate(-2deg);
+  transform-origin: 0 100%;
 }
+.marca .palabra { display: inline-block; letter-spacing: -0.005em; }
 .marca .j {
-  color: var(--manzana);
   display: inline-block;
-  transform: rotate(-6deg) translateY(0.04em);
-  margin-left: 0.04em;
+  font-family: var(--f-mano);
+  font-size: 1.04em;
+  line-height: 0.5;
+  color: var(--rojo-vivo);
+  text-transform: none;
+  transform: rotate(-11deg) translate(-0.02em, 0.1em);
 }
-.firma { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; align-items: baseline; }
-.firma .nombre { color: var(--tinta); }
-.epigrafe { margin: 0; display: grid; gap: 0.3rem; max-width: 24rem; }
-.epigrafe p { margin: 0; font-style: italic; font-size: 1.15rem; line-height: 1.45; }
-.epigrafe cite { font-style: normal; }
-
-@media (min-width: 760px) {
-  .portada { grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: 2rem; }
-  .cuadro { order: 2; width: 100%; margin-bottom: 0; justify-self: stretch; }
-  .titular { order: 1; padding-bottom: 1rem; }
-  .marca { font-size: min(7.5rem, 8.6vw); }
+.info { grid-area: info; display: grid; gap: 1.25rem; align-content: start; justify-items: start; padding-top: 1rem; min-width: 0; }
+.etiqueta {
+  display: inline-block;
+  background: var(--papel);
+  color: var(--tinta-papel);
+  font-family: var(--f-maquina);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  padding: 0.45rem 0.7rem 0.35rem;
+  transform: rotate(-1.4deg);
+  box-shadow: 0 2px 5px var(--sombra);
+}
+.recorte { filter: drop-shadow(0 4px 5px var(--sombra)); transform: rotate(1.3deg); max-width: 25rem; }
+.epigrafe {
+  margin: 0;
+  display: grid;
+  gap: 0.4rem;
+  background: var(--papel);
+  color: var(--tinta-papel);
+  padding: 0.95rem 1rem 1.05rem;
+  clip-path: polygon(0 6%, 4% 1%, 9% 5%, 15% 0, 22% 4%, 30% 1%, 37% 6%, 45% 2%, 53% 5%, 61% 0, 70% 4%, 78% 1%, 86% 6%, 93% 2%, 100% 5%, 100% 95%, 95% 100%, 88% 96%, 80% 100%, 72% 95%, 63% 99%, 55% 94%, 46% 99%, 38% 95%, 29% 100%, 21% 95%, 13% 99%, 6% 94%, 0 98%);
+}
+.epigrafe p { margin: 0; font-family: var(--f-maquina); font-size: 1.05rem; line-height: 1.38; }
+.epigrafe cite { font-style: normal; font-family: var(--f-texto); font-size: 0.78rem; color: var(--gris-papel); }
+.manzana {
+  grid-area: manzana;
+  margin: -0.5rem 0 0;
+  justify-self: end;
+  width: 100%;
+  max-width: 23rem;
+  transform: rotate(4deg);
+  filter: drop-shadow(0 12px 16px var(--sombra));
+}
+.manzana img { display: block; width: 100%; height: auto; }
+@media (min-width: 820px) {
+  .portada {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    grid-template-areas: "marca manzana" "info manzana";
+    column-gap: 2.5rem;
+    padding-top: 3.5rem;
+  }
+  .marca { font-size: min(10.5rem, 11.4vw); align-self: end; }
+  .manzana { margin: 0; justify-self: center; }
+  .info { padding-top: 1.75rem; }
 }
 
 /* ---------- Índice ---------- */
-.indice { padding-block: 2.5rem 3.5rem; }
-.indice-cabeza {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-  border-bottom: 2px solid var(--tinta);
-  padding-bottom: 0.5rem;
-}
+.indice { padding-block: clamp(2.25rem, 7vw, 4rem) 2.5rem; }
+.indice-cabeza { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
 .indice-cabeza h2 {
   margin: 0;
-  font-family: var(--f-marca);
+  font-family: var(--f-cartel);
   font-weight: 400;
-  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-size: clamp(2.3rem, 9vw, 3.3rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  padding-top: 0.2em;
 }
-.lista { list-style: none; margin: 0; padding: 0; }
-.lista li { border-bottom: 1px solid var(--filete); }
-.entrada {
-  display: grid;
-  grid-template-columns: 2.75rem minmax(0, 1fr);
-  column-gap: 1rem;
-  row-gap: 0.35rem;
-  padding-block: 1.5rem;
-  text-decoration: none;
+.conteo { font-family: var(--f-maquina); color: var(--gris); font-size: 0.95rem; }
+.lista { list-style: none; margin: 0; padding: 2.25rem 0 0; display: grid; gap: clamp(3rem, 8vw, 5rem); }
+.entrada { display: grid; gap: 1.25rem; text-decoration: none; color: inherit; }
+.grabado {
+  margin: 0;
+  transform: rotate(var(--giro, -1.4deg));
+  filter: drop-shadow(0 8px 12px var(--sombra));
+  transition: transform 0.25s ease;
 }
-.mancha { grid-row: 1 / span 3; width: 2.75rem; height: 2.75rem; display: block; }
-.renglon { display: flex; align-items: baseline; gap: 0.6rem; min-width: 0; }
-.renglon .titulo {
-  min-width: 0;
-  font-family: var(--f-marca);
+.grabado img { display: block; width: 100%; height: auto; }
+.entrada:hover .grabado, .entrada:focus-visible .grabado { transform: rotate(0deg) translateY(-4px); }
+.texto { display: grid; gap: 0.5rem; align-content: start; justify-items: start; min-width: 0; }
+.sello {
+  font-family: var(--f-maquina);
+  color: var(--rojo);
+  border: 2.5px solid currentColor;
+  border-radius: 3px;
+  padding: 0.1rem 0.55rem 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  transform: rotate(-6deg);
+}
+.titulo {
+  position: relative;
+  margin: 0.15rem 0 0;
+  font-family: var(--f-maquina);
   font-weight: 400;
-  font-size: clamp(1.6rem, 5.5vw, 2.1rem);
-  line-height: 1.1;
+  font-size: clamp(1.9rem, 6.6vw, 2.65rem);
+  line-height: 1.06;
   text-wrap: balance;
-  transition: color 0.2s ease;
 }
-.renglon .puntos {
-  flex: 1;
-  min-width: 1.5rem;
-  border-bottom: 2px dotted var(--gris);
-  opacity: 0.4;
-  transform: translateY(-0.3em);
+.titulo .t { position: relative; z-index: 1; }
+.garabato { position: absolute; left: -3%; bottom: -0.34em; width: 106%; height: 0.6em; color: var(--rojo-vivo); pointer-events: none; overflow: visible; }
+.garabato path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 2;
+  stroke-dashoffset: 1.5;
+  transition: stroke-dashoffset 0.5s ease;
 }
-.renglon .pp { flex: none; font-variant-numeric: tabular-nums; }
-.entrada .datos, .entrada .sinopsis { margin: 0; grid-column: 2; }
-.entrada .sinopsis { max-width: 34rem; color: var(--gris); }
-.entrada:hover .titulo, .entrada:focus-visible .titulo { color: var(--manzana); }
+.entrada:hover .garabato path, .entrada:focus-visible .garabato path { stroke-dashoffset: 0; }
+.datos { margin: 0; font-family: var(--f-texto); font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gris); }
+.sinopsis { margin: 0; max-width: 33rem; }
+.leer { font-family: var(--f-mano); color: var(--rojo); font-size: 1.25rem; transform: rotate(-3deg); margin-top: 0.15rem; }
 .vacio { padding-block: 2rem; color: var(--gris); }
+@media (min-width: 760px) {
+  .entrada { grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: 2.75rem; align-items: center; }
+  .ficha:nth-child(even) .grabado { order: 2; }
+}
 
-.pie { padding-block: 0 3rem; }
-.pie p { margin: 0; padding-top: 1.5rem; border-top: 1px solid var(--filete); }
+.pie { padding-block: 0.5rem 3rem; }
+.pie p { margin: 0.9rem 0 0; font-family: var(--f-maquina); font-size: 0.85rem; color: var(--gris); }
 
 /* ---------- Lector ---------- */
 .barra {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
   z-index: 5;
-  background: var(--muro);
-  border-bottom: 1px solid var(--filete);
+  background-color: var(--pared);
+  background-image: var(--textura);
+  box-shadow: 0 3px 0 -1px var(--tinta);
 }
-.barra .marco {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding-block: 0.6rem;
-}
+.barra .marco { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding-block: 0.55rem; }
 .volver { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; min-height: 2.5rem; }
-.volver .mini { font-family: var(--f-marca); font-size: 1.25rem; line-height: 1; }
-.volver .mini .j { color: var(--manzana); }
-.volver:hover .mini { color: var(--manzana); }
+.volver .mini { font-family: var(--f-cartel); text-transform: uppercase; font-size: 1.35rem; line-height: 1; letter-spacing: 0.02em; }
+.volver .mini .j { font-family: var(--f-mano); color: var(--rojo-vivo); text-transform: none; display: inline-block; transform: rotate(-10deg); }
 .boton {
   display: inline-flex;
   align-items: center;
   min-height: 2.5rem;
-  padding: 0 0.9rem;
-  border: 1px solid var(--tinta);
-  border-radius: 999px;
+  padding: 0 0.85rem;
+  border: 2px solid var(--tinta);
   background: transparent;
   font-family: var(--f-maquina);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
+  text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
+  transform: rotate(-1deg);
   transition: background 0.15s ease, color 0.15s ease;
 }
-.boton:hover { background: var(--tinta); color: var(--muro); }
+.boton:hover { background: var(--tinta); color: var(--pared); }
 
-.cabeza-obra {
-  padding-block: clamp(2rem, 7vw, 3.5rem) 2rem;
-  display: grid;
-  gap: 0.75rem;
-}
+.cabeza-obra { padding-block: clamp(1.75rem, 6vw, 3rem) 1.5rem; display: grid; gap: 0.7rem; justify-items: start; }
+.cabeza-obra .datos { font-size: 0.8rem; }
 .cabeza-obra h1 {
-  margin: 0;
-  font-family: var(--f-marca);
+  margin: 0.2rem 0 0;
+  font-family: var(--f-maquina);
   font-weight: 400;
-  font-size: clamp(2.6rem, 10vw, 4.6rem);
-  line-height: 0.95;
-  letter-spacing: -0.015em;
+  font-size: clamp(2.6rem, 11vw, 4.9rem);
+  line-height: 0.98;
   text-wrap: balance;
 }
-.cabeza-obra .sinopsis { margin: 0; max-width: 34rem; color: var(--gris); }
+.cabeza-obra .sinopsis { max-width: 36rem; }
+.grabado.grande { width: 100%; max-width: 48rem; margin-top: 1.25rem; --giro: -1deg; }
 
-.hojas { display: grid; gap: 2rem; justify-items: center; padding-block: 0.5rem 2rem; }
-.hoja { width: 100%; max-width: 36rem; margin: 0; display: grid; gap: 0.5rem; justify-items: center; }
+.hojas { display: grid; gap: 2.5rem; justify-items: center; padding-block: 1.5rem 2rem; }
+.hoja { width: 100%; max-width: 36rem; margin: 0; display: grid; gap: 0.6rem; justify-items: center; }
 .hoja .lienzo {
+  position: relative;
   width: 100%;
-  max-width: 100%;
   background: #FFFFFF;
-  box-shadow: 0 1px 2px var(--sombra), 0 18px 34px -18px var(--sombra);
+  box-shadow: 0 1px 2px var(--sombra), 0 18px 30px -16px var(--sombra);
   opacity: 0.35;
   transition: opacity 0.4s ease;
 }
+.hoja .lienzo::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -0.7rem;
+  left: 50%;
+  width: 5.5rem;
+  height: 1.4rem;
+  transform: translateX(-50%) rotate(-2.5deg);
+  background: var(--cinta);
+  clip-path: polygon(0 12%, 8% 0, 16% 12%, 26% 2%, 36% 12%, 48% 0, 60% 12%, 70% 2%, 82% 12%, 92% 0, 100% 10%, 100% 90%, 92% 100%, 82% 88%, 70% 98%, 60% 88%, 48% 100%, 36% 88%, 26% 98%, 16% 88%, 8% 100%, 0 90%);
+}
+.hoja:nth-child(even) .lienzo::before { transform: translateX(-50%) rotate(3deg); }
 .hoja.lista-hoja .lienzo { opacity: 1; }
 .hoja canvas { display: block; width: 100%; height: auto; }
-.hoja .folio { font-variant-numeric: tabular-nums; }
+.folio { font-family: var(--f-maquina); font-size: 0.85rem; color: var(--gris); font-variant-numeric: tabular-nums; }
 
-.aviso { padding-block: 2.5rem; display: grid; gap: 1rem; justify-items: start; }
+.aviso { padding-block: 2rem; display: grid; gap: 1rem; justify-items: start; }
 .aviso p { margin: 0; }
+.aviso .maquina { font-family: var(--f-maquina); color: var(--gris); }
 
 .fin { padding-block: 1rem 3rem; display: grid; gap: 2rem; justify-items: center; }
-.fin canvas { width: 3.5rem; height: 3.5rem; display: block; }
-.vecinos {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--filete);
-  padding-top: 1.25rem;
-}
+.manzanita { width: 6rem; height: auto; transform: rotate(-5deg); filter: drop-shadow(0 6px 8px var(--sombra)); }
+.vecinos { width: 100%; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 0.5rem; }
 .vecinos a { text-decoration: none; display: grid; gap: 0.15rem; min-width: 0; }
 .vecinos a:last-child { text-align: right; margin-left: auto; }
-.vecinos .t { font-family: var(--f-marca); font-size: 1.3rem; }
-.vecinos a:hover .t { color: var(--manzana); }
+.vecinos .rotulo { font-family: var(--f-mano); color: var(--rojo); font-size: 1rem; }
+.vecinos .t { font-family: var(--f-maquina); font-size: 1.3rem; line-height: 1.2; }
+.vecinos a:hover .t { text-decoration: underline; text-decoration-color: var(--rojo-vivo); text-decoration-thickness: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
@@ -287,10 +362,11 @@ button { font: inherit; color: inherit; }
     "publicado": "2026-11-07",
     "paginas": 7,
     "minutos": 9,
-    "color": "manzana",
     "sinopsis": "Durante veintiocho años, un forastero lee cada mañana el mismo periódico de 1997, y en el pueblo nadie está mejor informado que él.",
     "archivo": "textos/pagina-nueve.pdf",
-    "descarga": "Página nueve.pdf"
+    "descarga": "Página nueve.pdf",
+    "ilustracion": "ilustraciones/pagina-nueve",
+    "ilustracion_alt": "Página de clasificados de 1997, doblada y remendada con cinta, con un aviso de «Se busca» cuya foto quedó borrada bajo una huella de dedo."
   },
   {
     "slug": "parpados",
@@ -300,10 +376,11 @@ button { font: inherit; color: inherit; }
     "publicado": "2026-11-07",
     "paginas": 6,
     "minutos": 9,
-    "color": "hoja",
     "sinopsis": "Una anciana cuenta cómo se vivía cuando las únicas paredes eran los párpados, y qué pasó la noche en que el río desenterró la primera.",
     "archivo": "textos/parpados.pdf",
-    "descarga": "Párpados.pdf"
+    "descarga": "Párpados.pdf",
+    "ilustracion": "ilustraciones/parpados",
+    "ilustracion_alt": "Grabado de una casa sin paredes bajo la lluvia: el techo de paja es un párpado cerrado y sus pestañas son el alero; abajo, una hamaca y un fogón encendido."
   },
   {
     "slug": "desvarios-metafisicos-del-cuerpo",
@@ -313,10 +390,11 @@ button { font: inherit; color: inherit; }
     "publicado": "2026-11-07",
     "paginas": 3,
     "minutos": 4,
-    "color": "manzana",
     "sinopsis": "Un hombre que lee el porvenir en las torceduras de su cuerpo carga desde hace una semana un cuchillo sin mango en el corazón, y sale a caminar para descifrarlo.",
     "archivo": "textos/desvarios-metafisicos-del-cuerpo.pdf",
-    "descarga": "Desvaríos metafísicos del cuerpo.pdf"
+    "descarga": "Desvaríos metafísicos del cuerpo.pdf",
+    "ilustracion": "ilustraciones/desvarios-metafisicos-del-cuerpo",
+    "ilustracion_alt": "Corazón anatómico en rojo atravesado por la hoja de un cuchillo sin mango, con anotaciones a mano: «sin mango», «7 días», «torcedura nº 3», «porvenir»."
   },
   {
     "slug": "sobrecosto-de-muertos",
@@ -326,10 +404,11 @@ button { font: inherit; color: inherit; }
     "publicado": "2026-11-07",
     "paginas": 3,
     "minutos": 3,
-    "color": "hoja",
     "sinopsis": "Una velación masiva en el Chocó, donde los dolientes miden su pena por el número de balas y ya nadie sabe a qué muerto llora.",
     "archivo": "textos/sobrecosto-de-muertos.pdf",
-    "descarga": "Sobrecosto de muertos.pdf"
+    "descarga": "Sobrecosto de muertos.pdf",
+    "ilustracion": "ilustraciones/sobrecosto-de-muertos",
+    "ilustracion_alt": "Grabado en negro de nueve balas encendidas como velas sobre una mesa, con rayitas de conteo talladas debajo."
   },
   {
     "slug": "barro-y-bananos",
@@ -339,41 +418,46 @@ button { font: inherit; color: inherit; }
     "publicado": "2026-11-07",
     "paginas": 5,
     "minutos": 7,
-    "color": "manzana",
     "sinopsis": "Un carro atascado en la berma de una carretera bananera, dos amantes, un atardecer y el segundo exacto en que todo pudo ser distinto.",
     "archivo": "textos/barro-y-bananos.pdf",
-    "descarga": "Barro y bananos.pdf"
+    "descarga": "Barro y bananos.pdf",
+    "ilustracion": "ilustraciones/barro-y-bananos",
+    "ilustracion_alt": "Grabado de un carro con dos personas adentro, atascado en el barro de la berma de una carretera bananera, con el sol rojo poniéndose entre matas de plátano."
   }
 ]
 </script>
 
 <div id="vista-indice">
   <header class="marco portada">
-    <div class="cuadro"><canvas id="manzana" role="img" aria-label="Manzana pintada a la acuarela, mordida, con una letra J por tallo"></canvas></div>
-    <div class="titular">
-      <h1 class="marca">Manzana <span class="j">J</span></h1>
-      <div class="firma">
-        <span class="maquina rotulo">Escritos de <span class="nombre">Juan Hinestroza</span></span>
+    <h1 class="marca" aria-label="Manzana J"><span class="palabra gastado">Manzana</span> <span class="j">J</span></h1>
+    <div class="info">
+      <span class="etiqueta cinta-sup">Escritos de Juan Hinestroza</span>
+      <div class="recorte">
+        <blockquote class="epigrafe">
+          <p>Hagamos literatura, empañá los vidrios.</p>
+          <cite>— de «Barro y bananos»</cite>
+        </blockquote>
       </div>
-      <blockquote class="epigrafe">
-        <p>Hagamos literatura, empañá los vidrios.</p>
-        <cite class="maquina">De «Barro y bananos»</cite>
-      </blockquote>
     </div>
+    <figure class="manzana">
+      <img src="img/manzana.webp" width="1000" height="1200" alt="Foto recortada de una manzana roja de verdad, pegada con cinta sobre un papel rasgado, con una J de rotulador negro por tallo." fetchpriority="high">
+    </figure>
   </header>
 
   <main class="marco">
-    <section class="columna indice" aria-labelledby="titulo-indice">
+    <section class="indice" aria-labelledby="titulo-indice">
       <div class="indice-cabeza">
-        <h2 id="titulo-indice">Índice</h2>
-        <span class="maquina" id="conteo"></span>
+        <h2 id="titulo-indice" class="gastado">Índice</h2>
+        <span class="conteo" id="conteo"></span>
       </div>
+      <svg class="raya" id="raya-indice" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"></svg>
       <ol class="lista" id="lista"></ol>
     </section>
   </main>
 
   <footer class="marco pie">
-    <p class="maquina columna">© <span id="anio-pie">2026</span> Juan Hinestroza. Todos los derechos reservados.</p>
+    <svg class="raya" id="raya-pie" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"></svg>
+    <p>© <span id="anio-pie">2026</span> Juan Hinestroza. Todos los derechos reservados.</p>
   </footer>
 </div>
 
@@ -381,17 +465,20 @@ button { font: inherit; color: inherit; }
   <div class="barra">
     <div class="marco">
       <a class="volver" href="#" id="volver">
-        <span class="maquina">←</span>
+        <span aria-hidden="true">←</span>
         <span class="mini">Manzana <span class="j">J</span></span>
       </a>
+      <a class="boton" id="descargar" href="#" download>descargar pdf</a>
     </div>
   </div>
 
   <article class="marco">
     <header class="cabeza-obra">
-      <span class="maquina" id="obra-datos"></span>
+      <span class="sello gastado" id="obra-num"></span>
+      <span class="datos" id="obra-datos"></span>
       <h1 id="obra-titulo"></h1>
       <p class="sinopsis" id="obra-sinopsis"></p>
+      <figure class="grabado grande" id="obra-grabado"></figure>
     </header>
 
     <div class="aviso" id="cargando">
@@ -405,7 +492,8 @@ button { font: inherit; color: inherit; }
     <div class="hojas" id="hojas"></div>
 
     <footer class="fin" id="fin" hidden>
-      <canvas id="manzana-fin" aria-hidden="true"></canvas>
+      <img class="manzanita" src="img/manzana-mini.webp" width="360" height="432" alt="" loading="lazy" decoding="async">
+      <svg class="raya" id="raya-fin" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"></svg>
       <nav class="vecinos" id="vecinos" aria-label="Otros escritos"></nav>
     </footer>
   </article>
@@ -416,6 +504,7 @@ button { font: inherit; color: inherit; }
 (function () {
   var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
   var NOMBRE_SITIO = "Manzana J";
+  var NS = "http://www.w3.org/2000/svg";
   var catalogo = [];
   try { catalogo = JSON.parse(document.getElementById("catalogo").textContent); } catch (e) { catalogo = []; }
   catalogo.sort(function (a, b) { return (b.publicado || "").localeCompare(a.publicado || ""); });
@@ -427,7 +516,6 @@ button { font: inherit; color: inherit; }
   var $ = function (id) { return document.getElementById(id); };
   var vistaIndice = $("vista-indice");
   var vistaLector = $("vista-lector");
-  var sinMovimiento = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function el(tag, cls, texto) {
     var n = document.createElement(tag);
@@ -440,6 +528,17 @@ button { font: inherit; color: inherit; }
     if (p.length !== 3) return "";
     return Number(p[2]) + " de " + MESES[Number(p[1]) - 1] + " de " + p[0];
   }
+  function numero(o) {
+    var n = catalogo.length - catalogo.indexOf(o);
+    return "Nº " + (n < 10 ? "0" : "") + n;
+  }
+  function datosIndice(o) {
+    var partes = [o.genero];
+    if (o.paginas) partes.push(o.paginas + " pp.");
+    if (o.minutos) partes.push(o.minutos + " min");
+    if (o.publicado) partes.push(fechaLarga(o.publicado));
+    return partes.filter(Boolean).join(" · ");
+  }
   function datosObra(o) {
     var partes = [o.genero, String(o.anio)];
     if (o.paginas) partes.push(o.paginas + (o.paginas === 1 ? " página" : " páginas"));
@@ -447,7 +546,7 @@ button { font: inherit; color: inherit; }
     return partes.filter(Boolean).join(" · ");
   }
 
-  /* ---------- Pintura ---------- */
+  /* ---------- Trazos a mano ---------- */
   function azar(semilla) {
     return function () {
       semilla = (semilla + 0x6D2B79F5) | 0;
@@ -461,186 +560,52 @@ button { font: inherit; color: inherit; }
     for (var i = 0; i < texto.length; i++) { h ^= texto.charCodeAt(i); h = Math.imul(h, 16777619); }
     return h >>> 0;
   }
-  function token(nombre) {
-    return getComputedStyle(document.documentElement).getPropertyValue(nombre).trim();
-  }
-  function rgb(hex) {
-    var h = hex.replace("#", "");
-    if (h.length === 3) h = h.split("").map(function (c) { return c + c; }).join("");
-    var n = parseInt(h, 16);
-    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  }
-  function rgba(c, a) { return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")"; }
-
-  function mancha(ctx, cx, cy, rx, ry, R, desorden, rot) {
-    var n = 22, pts = [];
-    rot = rot || 0;
-    for (var i = 0; i < n; i++) {
-      var a = (i / n) * Math.PI * 2;
-      var k = 1 + (R() - 0.5) * desorden;
-      var x = Math.cos(a) * rx * k, y = Math.sin(a) * ry * k;
-      pts.push([cx + x * Math.cos(rot) - y * Math.sin(rot), cy + x * Math.sin(rot) + y * Math.cos(rot)]);
+  function trazo(R, ancho, alto, pasos, vuelta) {
+    var y0 = alto / 2;
+    var d = "M" + (R() * 6).toFixed(1) + " " + (y0 + (R() - 0.5) * alto * 0.5).toFixed(1);
+    for (var i = 1; i <= pasos; i++) {
+      var x = (ancho * i) / pasos;
+      d += " Q" + (x - ancho / pasos / 2).toFixed(1) + " " + (y0 + (R() - 0.5) * alto * 0.7).toFixed(1) + " " + x.toFixed(1) + " " + (y0 + (R() - 0.5) * alto * 0.45).toFixed(1);
     }
-    ctx.beginPath();
-    var m0 = [(pts[0][0] + pts[n - 1][0]) / 2, (pts[0][1] + pts[n - 1][1]) / 2];
-    ctx.moveTo(m0[0], m0[1]);
-    for (var j = 0; j < n; j++) {
-      var p = pts[j], q = pts[(j + 1) % n];
-      ctx.quadraticCurveTo(p[0], p[1], (p[0] + q[0]) / 2, (p[1] + q[1]) / 2);
-    }
-    ctx.closePath();
-  }
-
-  function preparar(canvas) {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-    var w = canvas.clientWidth || 300;
-    canvas.width = Math.round(w * dpr);
-    canvas.height = Math.round(w * dpr);
-    var ctx = canvas.getContext("2d");
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, w, w);
-    return { ctx: ctx, S: w };
-  }
-
-  function pasosManzana(ctx, S, conTallo) {
-    var R = azar(7341);
-    var roja = rgb(token("--manzana")), verde = rgb(token("--hoja")), tinta = rgb(token("--tinta"));
-    var cx = S * 0.48, cy = S * 0.6, A = S * 0.3;
-    var pasos = [];
-
-    pasos.push(function () {
-      for (var i = 0; i < 10; i++) {
-        mancha(ctx, cx + (R() - 0.5) * A * 0.1, cy + A * 0.98, A * 0.85, A * 0.08, R, 0.25);
-        ctx.fillStyle = rgba(tinta, 0.035);
-        ctx.fill();
+    if (vuelta) {
+      for (var j = pasos - 1; j >= 1; j--) {
+        var x2 = (ancho * j) / pasos - R() * 8;
+        d += " L" + x2.toFixed(1) + " " + (y0 + alto * 0.18 + (R() - 0.5) * alto * 0.5).toFixed(1);
       }
-    });
-    for (var c = 0; c < 44; c++) {
-      pasos.push(function () {
-        var j = function (f) { return (R() - 0.5) * A * f; };
-        var lobulos = [
-          [cx - A * 0.34 + j(0.08), cy - A * 0.06 + j(0.08), A * 0.76],
-          [cx + A * 0.34 + j(0.08), cy - A * 0.06 + j(0.08), A * 0.76],
-          [cx + j(0.08), cy + A * 0.2 + j(0.08), A * 0.7]
-        ];
-        lobulos.forEach(function (l) {
-          var r = l[2] * (0.9 + R() * 0.14);
-          mancha(ctx, l[0], l[1], r, r * 0.98, R, 0.12);
-          ctx.fillStyle = rgba(roja, 0.035 + R() * 0.035);
-          ctx.fill();
-          ctx.strokeStyle = rgba(roja, 0.07);
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        });
-      });
     }
-    pasos.push(function () {
-      ctx.save();
-      for (var i = 0; i < 8; i++) {
-        mancha(ctx, cx - A * 0.42, cy - A * 0.28, A * 0.2, A * 0.28, R, 0.4, -0.5);
-        ctx.fillStyle = "rgba(255,255,255,0.07)";
-        ctx.fill();
-      }
-      ctx.globalCompositeOperation = "destination-out";
-      var mordida = [[cx + A * 1.1, cy + A * 0.02, A * 0.27], [cx + A * 1.02, cy - A * 0.34, A * 0.2], [cx + A * 1.02, cy + A * 0.38, A * 0.21]];
-      ctx.fillStyle = "rgba(0,0,0,1)";
-      mordida.forEach(function (m) { ctx.beginPath(); ctx.arc(m[0], m[1], m[2], 0, Math.PI * 2); ctx.fill(); });
-      ctx.restore();
-    });
-    pasos.push(function () {
-      ctx.save();
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      for (var pase = 0; pase < 2; pase++) {
-        ctx.strokeStyle = rgba(tinta, pase ? 0.35 : 0.8);
-        ctx.lineWidth = Math.max(1, S * (pase ? 0.003 : 0.0045));
-        ctx.beginPath();
-        var primero = true;
-        for (var t = 0.62; t <= Math.PI * 2 - 0.5; t += 0.05) {
-          var th = t;
-          var abolladura = 0.2 * Math.exp(-Math.pow(th - Math.PI * 1.5, 2) / 0.05) + 0.06 * Math.exp(-Math.pow(th - Math.PI * 0.5, 2) / 0.1);
-          var r = 1 - abolladura + (R() - 0.5) * 0.018;
-          var x = cx + S * 0.012 + Math.cos(th) * A * 1.1 * r;
-          var y = cy - S * 0.008 + Math.sin(th) * A * (th > Math.PI ? 0.86 : 0.92) * r;
-          if (primero) { ctx.moveTo(x, y); primero = false; } else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-      }
-      ctx.strokeStyle = rgba(tinta, 0.55);
-      ctx.lineWidth = Math.max(1, S * 0.003);
-      [[cx + A * 1.1, cy + A * 0.02, A * 0.27, 2.2, 4.1], [cx + A * 1.02, cy - A * 0.34, A * 0.2, 2.0, 3.6], [cx + A * 1.02, cy + A * 0.38, A * 0.21, 2.6, 4.3]].forEach(function (m) {
-        ctx.beginPath(); ctx.arc(m[0], m[1], m[2], m[3], m[4]); ctx.stroke();
-      });
-      ctx.restore();
-    });
-    if (conTallo) {
-      pasos.push(function () {
-        for (var i = 0; i < 16; i++) {
-          mancha(ctx, cx + A * 0.48, cy - A * 1.2, A * 0.34, A * 0.12, R, 0.18, -0.55);
-          ctx.fillStyle = rgba(verde, 0.06 + R() * 0.04);
-          ctx.fill();
-        }
-        ctx.strokeStyle = rgba(tinta, 0.5);
-        ctx.lineWidth = Math.max(1, S * 0.0025);
-        ctx.beginPath();
-        ctx.moveTo(cx + A * 0.2, cy - A * 1.0);
-        ctx.quadraticCurveTo(cx + A * 0.5, cy - A * 1.24, cx + A * 0.78, cy - A * 1.4);
-        ctx.stroke();
-      });
-      pasos.push(function () {
-        ctx.save();
-        var tam = A * 1.05;
-        ctx.font = tam + 'px "Gloock", Georgia, serif';
-        ctx.textBaseline = "alphabetic";
-        ctx.translate(cx + A * 0.02, cy - A * 0.78);
-        ctx.rotate(-0.12);
-        ctx.fillStyle = rgba(tinta, 0.92);
-        ctx.fillText("J", -tam * 0.18, 0);
-        ctx.restore();
-      });
-    }
-    return pasos;
+    return d;
   }
-
-  function pintar(canvas, pasos, animar) {
-    if (!animar || sinMovimiento) { pasos.forEach(function (p) { p(); }); return; }
-    var i = 0;
-    (function cuadro() {
-      for (var k = 0; k < 2 && i < pasos.length; k++) pasos[i++]();
-      if (i < pasos.length) requestAnimationFrame(cuadro);
-    })();
+  function raya(svg, semilla) {
+    if (!svg) return;
+    svg.textContent = "";
+    var p = document.createElementNS(NS, "path");
+    p.setAttribute("d", trazo(azar(semilla), 600, 16, 9, false));
+    svg.appendChild(p);
   }
-
-  function pintarManchita(canvas, nombreColor, semilla) {
-    var p = preparar(canvas), ctx = p.ctx, S = p.S;
-    var R = azar(semilla);
-    var c = rgb(token("--" + (nombreColor || "manzana")) || token("--manzana"));
-    for (var i = 0; i < 16; i++) {
-      mancha(ctx, S / 2 + (R() - 0.5) * S * 0.08, S / 2 + (R() - 0.5) * S * 0.08, S * 0.36, S * 0.32, R, 0.3, R() * 3);
-      ctx.fillStyle = rgba(c, 0.07 + R() * 0.06);
-      ctx.fill();
-    }
+  function garabato(semilla) {
+    var svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("class", "garabato");
+    svg.setAttribute("viewBox", "0 0 300 24");
+    svg.setAttribute("preserveAspectRatio", "none");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+    var p = document.createElementNS(NS, "path");
+    p.setAttribute("d", trazo(azar(semilla), 300, 24, 7, true));
+    p.setAttribute("pathLength", "1");
+    svg.appendChild(p);
+    return svg;
   }
-
-  function grano() {
-    var c = document.createElement("canvas");
-    c.width = c.height = 180;
-    var ctx = c.getContext("2d");
-    var t = rgb(token("--tinta")), R = azar(99);
-    for (var i = 0; i < 2600; i++) {
-      ctx.fillStyle = rgba(t, R() * 0.05);
-      ctx.fillRect(R() * 180, R() * 180, 1, 1);
-    }
-    try { document.body.style.backgroundImage = "url(" + c.toDataURL() + ")"; } catch (e) {}
-  }
-
-  function pintarTodo(animar) {
-    var portada = $("manzana");
-    if (portada && !vistaIndice.hidden) { var p = preparar(portada); pintar(portada, pasosManzana(p.ctx, p.S, true), animar); }
-    var fin = $("manzana-fin");
-    if (fin && !vistaLector.hidden) { var f = preparar(fin); pintar(fin, pasosManzana(f.ctx, f.S, true), false); }
-    document.querySelectorAll("canvas.mancha").forEach(function (c) { pintarManchita(c, c.dataset.color, Number(c.dataset.semilla)); });
-    grano();
+  function imagen(o, grande) {
+    var img = document.createElement("img");
+    img.src = o.ilustracion + (grande ? ".webp" : "-mini.webp");
+    img.srcset = o.ilustracion + "-mini.webp 560w, " + o.ilustracion + ".webp 1400w";
+    img.sizes = grande ? "(min-width: 820px) 48rem, 100vw" : "(min-width: 760px) 36rem, 94vw";
+    img.width = 1400;
+    img.height = 1050;
+    img.alt = o.ilustracion_alt || "";
+    img.decoding = "async";
+    if (!grande) img.loading = "lazy";
+    return img;
   }
 
   /* ---------- Índice ---------- */
@@ -649,38 +614,46 @@ button { font: inherit; color: inherit; }
     lista.textContent = "";
     $("conteo").textContent = catalogo.length + (catalogo.length === 1 ? " texto" : " textos");
     $("anio-pie").textContent = String(new Date().getFullYear());
+    raya($("raya-indice"), 17);
+    raya($("raya-pie"), 29);
     if (!catalogo.length) { lista.appendChild(el("li", "vacio", "Todavía no hay escritos publicados.")); return; }
-    catalogo.forEach(function (o) {
-      var li = el("li");
+    catalogo.forEach(function (o, i) {
+      var R = azar(semillaDe(o.slug));
+      var li = el("li", "ficha");
+      li.style.setProperty("--giro", ((i % 2 ? 1 : -1) * (0.7 + R() * 1.3)).toFixed(2) + "deg");
       var a = el("a", "entrada");
       a.href = "#" + o.slug;
-      var m = el("canvas", "mancha");
-      m.setAttribute("aria-hidden", "true");
-      m.dataset.color = o.color || "manzana";
-      m.dataset.semilla = String(semillaDe(o.slug));
-      a.appendChild(m);
-      var renglon = el("span", "renglon");
-      renglon.appendChild(el("span", "titulo", o.titulo));
-      renglon.appendChild(el("span", "puntos"));
-      renglon.appendChild(el("span", "maquina pp", o.paginas ? o.paginas + " pp." : ""));
-      a.appendChild(renglon);
-      a.appendChild(el("p", "maquina datos", o.genero + " · Publicado el " + fechaLarga(o.publicado)));
-      if (o.sinopsis) a.appendChild(el("p", "sinopsis", o.sinopsis));
+      if (o.ilustracion) {
+        var fig = el("figure", "grabado");
+        fig.appendChild(imagen(o, false));
+        a.appendChild(fig);
+      }
+      var tx = el("div", "texto");
+      tx.appendChild(el("span", "sello gastado", numero(o)));
+      var h = el("h3", "titulo");
+      h.appendChild(el("span", "t", o.titulo));
+      h.appendChild(garabato(semillaDe(o.slug + "~")));
+      tx.appendChild(h);
+      tx.appendChild(el("p", "datos", datosIndice(o)));
+      if (o.sinopsis) tx.appendChild(el("p", "sinopsis", o.sinopsis));
+      var leer = el("span", "leer", "leer →");
+      leer.setAttribute("aria-hidden", "true");
+      tx.appendChild(leer);
+      a.appendChild(tx);
       li.appendChild(a);
       lista.appendChild(li);
     });
   }
 
   /* ---------- Lector ---------- */
-  var actual = null, turno = 0, docPdf = null, bytesPdf = null, anchoPintado = 0;
+  var actual = null, turno = 0, docPdf = null, anchoPintado = 0;
 
-  function mostrarIndice(animar) {
+  function mostrarIndice() {
     actual = null;
     turno++;
     vistaLector.hidden = true;
     vistaIndice.hidden = false;
     document.title = NOMBRE_SITIO;
-    pintarTodo(animar);
   }
 
   function mostrarLector(o) {
@@ -690,16 +663,24 @@ button { font: inherit; color: inherit; }
     vistaLector.hidden = false;
     window.scrollTo(0, 0);
     document.title = o.titulo + " · " + NOMBRE_SITIO;
+    $("obra-num").textContent = numero(o);
     $("obra-datos").textContent = datosObra(o);
     $("obra-titulo").textContent = o.titulo;
     $("obra-sinopsis").textContent = o.sinopsis || "";
+    var fig = $("obra-grabado");
+    fig.textContent = "";
+    fig.hidden = !o.ilustracion;
+    if (o.ilustracion) fig.appendChild(imagen(o, true));
+    var bajar = $("descargar");
+    bajar.href = o.archivo;
+    bajar.setAttribute("download", o.descarga || "");
     $("hojas").textContent = "";
     $("fin").hidden = true;
     $("error").hidden = true;
     $("cargando").hidden = false;
     pintarVecinos(o);
+    raya($("raya-fin"), semillaDe(o.slug));
     docPdf = null;
-    bytesPdf = null;
 
     if (!window.pdfjsLib) { fallo(miTurno); return; }
 
@@ -707,8 +688,7 @@ button { font: inherit; color: inherit; }
       .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.arrayBuffer(); })
       .then(function (buf) {
         if (miTurno !== turno) return null;
-        bytesPdf = buf;
-        return pdfjsLib.getDocument({ data: buf.slice(0) }).promise;
+        return pdfjsLib.getDocument({ data: buf }).promise;
       })
       .then(function (doc) {
         if (!doc || miTurno !== turno) return;
@@ -717,7 +697,7 @@ button { font: inherit; color: inherit; }
         return pintarHojas(doc, miTurno);
       })
       .then(function () {
-        if (miTurno === turno && docPdf) { $("fin").hidden = false; pintarTodo(false); }
+        if (miTurno === turno && docPdf) $("fin").hidden = false;
       })
       .catch(function () { fallo(miTurno); });
   }
@@ -740,7 +720,7 @@ button { font: inherit; color: inherit; }
       c.setAttribute("aria-label", "Página " + i + " de " + doc.numPages);
       lienzo.appendChild(c);
       h.appendChild(lienzo);
-      h.appendChild(el("figcaption", "maquina folio", i + " / " + doc.numPages));
+      h.appendChild(el("figcaption", "folio", i + " / " + doc.numPages));
       cont.appendChild(h);
       hojas.push(h);
     }
@@ -774,12 +754,12 @@ button { font: inherit; color: inherit; }
     nav.textContent = "";
     var i = catalogo.indexOf(o);
     var anterior = catalogo[i + 1], siguiente = catalogo[i - 1];
-    if (anterior) nav.appendChild(enlaceVecino(anterior, "← Anterior"));
-    if (siguiente) nav.appendChild(enlaceVecino(siguiente, "Siguiente →"));
+    if (anterior) nav.appendChild(enlaceVecino(anterior, "← anterior"));
+    if (siguiente) nav.appendChild(enlaceVecino(siguiente, "siguiente →"));
     if (!anterior && !siguiente) {
       var a = el("a");
       a.href = "#";
-      a.appendChild(el("span", "maquina", "Volver"));
+      a.appendChild(el("span", "rotulo", "volver"));
       a.appendChild(el("span", "t", "Índice de escritos"));
       nav.appendChild(a);
     }
@@ -787,7 +767,7 @@ button { font: inherit; color: inherit; }
   function enlaceVecino(o, etiqueta) {
     var a = el("a");
     a.href = "#" + o.slug;
-    a.appendChild(el("span", "maquina", etiqueta));
+    a.appendChild(el("span", "rotulo", etiqueta));
     a.appendChild(el("span", "t", o.titulo));
     return a;
   }
@@ -798,7 +778,6 @@ button { font: inherit; color: inherit; }
     espera = setTimeout(function () {
       if (Math.abs(window.innerWidth - anchoVentana) < 20) return;
       anchoVentana = window.innerWidth;
-      pintarTodo(false);
       if (!docPdf || vistaLector.hidden) return;
       var w = $("hojas").clientWidth;
       if (Math.abs(w - anchoPintado) < 40) return;
@@ -807,31 +786,22 @@ button { font: inherit; color: inherit; }
     }, 250);
   });
 
-  function alCambiarTema() { pintarTodo(false); }
-  if (window.matchMedia) {
-    var mq = window.matchMedia("(prefers-color-scheme: dark)");
-    if (mq.addEventListener) mq.addEventListener("change", alCambiarTema);
-  }
-  new MutationObserver(alCambiarTema).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-
   $("reintentar").addEventListener("click", function () { if (actual) mostrarLector(actual); });
   $("volver").addEventListener("click", function (e) {
     e.preventDefault();
-    if (location.hash) location.hash = ""; else mostrarIndice(false);
+    if (location.hash) location.hash = ""; else mostrarIndice();
   });
 
   /* ---------- Rutas ---------- */
-  function enrutar(animar) {
+  function enrutar() {
     var slug = decodeURIComponent(location.hash.replace(/^#/, ""));
     var obra = null;
     for (var i = 0; i < catalogo.length; i++) if (catalogo[i].slug === slug) obra = catalogo[i];
-    if (obra) mostrarLector(obra); else mostrarIndice(animar === true);
+    if (obra) mostrarLector(obra); else mostrarIndice();
   }
-  window.addEventListener("hashchange", function () { enrutar(false); });
+  window.addEventListener("hashchange", enrutar);
   pintarIndice();
-  enrutar(false);
-  var fuentes = document.fonts && document.fonts.load ? document.fonts.load('80px "Gloock"') : Promise.resolve();
-  fuentes.then(function () { if (!vistaIndice.hidden) pintarTodo(true); }, function () {});
+  enrutar();
 })();
 </script>
 
