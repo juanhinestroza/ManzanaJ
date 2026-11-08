@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Manzana J</title>
+<meta name="description" content="Escritos de Juan Hinestroza: cuentos para leer en línea o descargar en PDF.">
+<meta name="author" content="Juan Hinestroza">
+<meta property="og:title" content="Manzana J">
+<meta property="og:description" content="Escritos de Juan Hinestroza.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 22c-6-5-20-4-22 10s8 28 22 28 24-14 22-28-16-15-22-10z' fill='%23B0222A'/%3E%3Ctext x='24' y='30' font-family='Georgia,serif' font-size='30' fill='%231B1B17'%3EJ%3C/text%3E%3C/svg%3E">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap">
+<style>
+/* Layout: cartel de galería. La manzana pintada (con una J por tallo) junto al nombre en gran formato; debajo, el índice como lista de obras con su mancha de color; el lector cuelga las hojas del PDF en el muro. */
+:root {
+  --muro: #E8EBDE;
+  --tinta: #1B1B17;
+  --gris: #5E6356;
+  --filete: #CBD0BD;
+  --manzana: #B0222A;
+  --hoja: #4D6A2C;
+  --sombra: rgba(27, 27, 23, 0.18);
+  --f-marca: "Gloock", "Bodoni 72", Didot, Georgia, serif;
+  --f-texto: "Literata", Georgia, "Times New Roman", serif;
+  --f-maquina: "Courier Prime", "Courier New", Courier, monospace;
+  --ancho: 60rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --muro: #13150F;
+    --tinta: #E9E7DC;
+    --gris: #A0A595;
+    --filete: #2B2F24;
+    --manzana: #E2474E;
+    --hoja: #8FB264;
+    --sombra: rgba(0, 0, 0, 0.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --muro: #13150F;
+  --tinta: #E9E7DC;
+  --gris: #A0A595;
+  --filete: #2B2F24;
+  --manzana: #E2474E;
+  --hoja: #8FB264;
+  --sombra: rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--muro);
+  color: var(--tinta);
+  font-family: var(--f-texto);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--muro);
+}
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--manzana); outline-offset: 3px; border-radius: 2px; }
+
+.marco {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.columna { max-width: 44rem; }
+
+.maquina {
+  font-family: var(--f-maquina);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--gris);
+}
+.rotulo { text-transform: uppercase; letter-spacing: 0.2em; }
+
+/* ---------- Portada ---------- */
+.portada {
+  padding-block: clamp(1.5rem, 6vw, 4rem) 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  align-items: end;
+}
+.cuadro {
+  justify-self: end;
+  width: min(78%, 22rem);
+  max-width: 100%;
+  aspect-ratio: 1;
+  margin-bottom: -2.5rem;
+}
+.cuadro canvas { display: block; width: 100%; height: 100%; }
+.titular { display: grid; gap: 1.25rem; min-width: 0; }
+.marca {
+  margin: 0;
+  font-family: var(--f-marca);
+  font-weight: 400;
+  font-size: clamp(3.4rem, 16vw, 7rem);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.marca .j {
+  color: var(--manzana);
+  display: inline-block;
+  transform: rotate(-6deg) translateY(0.04em);
+  margin-left: 0.04em;
+}
+.firma { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; align-items: baseline; }
+.firma .nombre { color: var(--tinta); }
+.epigrafe { margin: 0; display: grid; gap: 0.3rem; max-width: 24rem; }
+.epigrafe p { margin: 0; font-style: italic; font-size: 1.15rem; line-height: 1.45; }
+.epigrafe cite { font-style: normal; }
+
+@media (min-width: 760px) {
+  .portada { grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: 2rem; }
+  .cuadro { order: 2; width: 100%; margin-bottom: 0; justify-self: stretch; }
+  .titular { order: 1; padding-bottom: 1rem; }
+  .marca { font-size: min(7.5rem, 8.6vw); }
+}
+
+/* ---------- Índice ---------- */
+.indice { padding-block: 2.5rem 3.5rem; }
+.indice-cabeza {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 2px solid var(--tinta);
+  padding-bottom: 0.5rem;
+}
+.indice-cabeza h2 {
+  margin: 0;
+  font-family: var(--f-marca);
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.lista { list-style: none; margin: 0; padding: 0; }
+.lista li { border-bottom: 1px solid var(--filete); }
+.entrada {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  column-gap: 1rem;
+  row-gap: 0.35rem;
+  padding-block: 1.5rem;
+  text-decoration: none;
+}
+.mancha { grid-row: 1 / span 3; width: 2.75rem; height: 2.75rem; display: block; }
+.renglon { display: flex; align-items: baseline; gap: 0.6rem; min-width: 0; }
+.renglon .titulo {
+  min-width: 0;
+  font-family: var(--f-marca);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 5.5vw, 2.1rem);
+  line-height: 1.1;
+  text-wrap: balance;
+  transition: color 0.2s ease;
+}
+.renglon .puntos {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 2px dotted var(--gris);
+  opacity: 0.4;
+  transform: translateY(-0.3em);
+}
+.renglon .pp { flex: none; font-variant-numeric: tabular-nums; }
+.entrada .datos, .entrada .sinopsis { margin: 0; grid-column: 2; }
+.entrada .sinopsis { max-width: 34rem; color: var(--gris); }
+.entrada:hover .titulo, .entrada:focus-visible .titulo { color: var(--manzana); }
+.vacio { padding-block: 2rem; color: var(--gris); }
+
+.pie { padding-block: 0 3rem; }
+.pie p { margin: 0; padding-top: 1.5rem; border-top: 1px solid var(--filete); }
+
+/* ---------- Lector ---------- */
+.barra {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 5;
+  background: var(--muro);
+  border-bottom: 1px solid var(--filete);
+}
+.barra .marco {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-block: 0.6rem;
+}
+.volver { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; min-height: 2.5rem; }
+.volver .mini { font-family: var(--f-marca); font-size: 1.25rem; line-height: 1; }
+.volver .mini .j { color: var(--manzana); }
+.volver:hover .mini { color: var(--manzana); }
+.boton {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--tinta);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--f-maquina);
+  font-size: 0.875rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.boton:hover { background: var(--tinta); color: var(--muro); }
+
+.cabeza-obra {
+  padding-block: clamp(2rem, 7vw, 3.5rem) 2rem;
+  display: grid;
+  gap: 0.75rem;
+}
+.cabeza-obra h1 {
+  margin: 0;
+  font-family: var(--f-marca);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 10vw, 4.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.cabeza-obra .sinopsis { margin: 0; max-width: 34rem; color: var(--gris); }
+
+.hojas { display: grid; gap: 2rem; justify-items: center; padding-block: 0.5rem 2rem; }
+.hoja { width: 100%; max-width: 36rem; margin: 0; display: grid; gap: 0.5rem; justify-items: center; }
+.hoja .lienzo {
+  width: 100%;
+  max-width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0 1px 2px var(--sombra), 0 18px 34px -18px var(--sombra);
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+}
+.hoja.lista-hoja .lienzo { opacity: 1; }
+.hoja canvas { display: block; width: 100%; height: auto; }
+.hoja .folio { font-variant-numeric: tabular-nums; }
+
+.aviso { padding-block: 2.5rem; display: grid; gap: 1rem; justify-items: start; }
+.aviso p { margin: 0; }
+
+.fin { padding-block: 1rem 3rem; display: grid; gap: 2rem; justify-items: center; }
+.fin canvas { width: 3.5rem; height: 3.5rem; display: block; }
+.vecinos {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--filete);
+  padding-top: 1.25rem;
+}
+.vecinos a { text-decoration: none; display: grid; gap: 0.15rem; min-width: 0; }
+.vecinos a:last-child { text-align: right; margin-left: auto; }
+.vecinos .t { font-family: var(--f-marca); font-size: 1.3rem; }
+.vecinos a:hover .t { color: var(--manzana); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+
+<script type="application/json" id="catalogo">
+[
+  {
+    "slug": "desvarios-metafisicos-del-cuerpo",
+    "titulo": "Desvaríos metafísicos del cuerpo",
+    "genero": "Cuento",
+    "anio": 2026,
+    "publicado": "2026-11-07",
+    "paginas": 3,
+    "minutos": 4,
+    "color": "manzana",
+    "sinopsis": "Un hombre que lee el porvenir en las torceduras de su cuerpo carga desde hace una semana un cuchillo sin mango en el corazón, y sale a caminar para descifrarlo.",
+    "archivo": "textos/desvarios-metafisicos-del-cuerpo.pdf",
+    "descarga": "Desvaríos metafísicos del cuerpo.pdf"
+  },
+  {
+    "slug": "sobrecosto-de-muertos",
+    "titulo": "Sobrecosto de muertos",
+    "genero": "Cuento",
+    "anio": 2026,
+    "publicado": "2026-11-07",
+    "paginas": 3,
+    "minutos": 3,
+    "color": "hoja",
+    "sinopsis": "Una velación masiva en el Chocó, donde los dolientes miden su pena por el número de balas y ya nadie sabe a qué muerto llora.",
+    "archivo": "textos/sobrecosto-de-muertos.pdf",
+    "descarga": "Sobrecosto de muertos.pdf"
+  },
+  {
+    "slug": "barro-y-bananos",
+    "titulo": "Barro y bananos",
+    "genero": "Cuento",
+    "anio": 2026,
+    "publicado": "2026-11-07",
+    "paginas": 5,
+    "minutos": 7,
+    "color": "manzana",
+    "sinopsis": "Un carro atascado en la berma de una carretera bananera, dos amantes, un atardecer y el segundo exacto en que todo pudo ser distinto.",
+    "archivo": "textos/barro-y-bananos.pdf",
+    "descarga": "Barro y bananos.pdf"
+  }
+]
+</script>
+
+<div id="vista-indice">
+  <header class="marco portada">
+    <div class="cuadro"><canvas id="manzana" role="img" aria-label="Manzana pintada a la acuarela, mordida, con una letra J por tallo"></canvas></div>
+    <div class="titular">
+      <h1 class="marca">Manzana <span class="j">J</span></h1>
+      <div class="firma">
+        <span class="maquina rotulo">Escritos de <span class="nombre">Juan Hinestroza</span></span>
+      </div>
+      <blockquote class="epigrafe">
+        <p>Hagamos literatura, empañá los vidrios.</p>
+        <cite class="maquina">De «Barro y bananos»</cite>
+      </blockquote>
+    </div>
+  </header>
+
+  <main class="marco">
+    <section class="columna indice" aria-labelledby="titulo-indice">
+      <div class="indice-cabeza">
+        <h2 id="titulo-indice">Índice</h2>
+        <span class="maquina" id="conteo"></span>
+      </div>
+      <ol class="lista" id="lista"></ol>
+    </section>
+  </main>
+
+  <footer class="marco pie">
+    <p class="maquina columna">© <span id="anio-pie">2026</span> Juan Hinestroza. Todos los derechos reservados.</p>
+  </footer>
+</div>
+
+<div id="vista-lector" hidden>
+  <div class="barra">
+    <div class="marco">
+      <a class="volver" href="#" id="volver">
+        <span class="maquina">←</span>
+        <span class="mini">Manzana <span class="j">J</span></span>
+      </a>
+    </div>
+  </div>
+
+  <article class="marco">
+    <header class="cabeza-obra">
+      <span class="maquina" id="obra-datos"></span>
+      <h1 id="obra-titulo"></h1>
+      <p class="sinopsis" id="obra-sinopsis"></p>
+    </header>
+
+    <div class="aviso" id="cargando">
+      <p class="maquina">Abriendo el manuscrito…</p>
+    </div>
+    <div class="aviso" id="error" hidden>
+      <p>No se pudo abrir el PDF. Revisa tu conexión y vuelve a intentarlo.</p>
+      <button class="boton" type="button" id="reintentar">Volver a intentar</button>
+    </div>
+
+    <div class="hojas" id="hojas"></div>
+
+    <footer class="fin" id="fin" hidden>
+      <canvas id="manzana-fin" aria-hidden="true"></canvas>
+      <nav class="vecinos" id="vecinos" aria-label="Otros escritos"></nav>
+    </footer>
+  </article>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function () {
+  var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+  var NOMBRE_SITIO = "Manzana J";
+  var catalogo = [];
+  try { catalogo = JSON.parse(document.getElementById("catalogo").textContent); } catch (e) { catalogo = []; }
+  catalogo.sort(function (a, b) { return (b.publicado || "").localeCompare(a.publicado || ""); });
+
+  if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+  var vistaIndice = $("vista-indice");
+  var vistaLector = $("vista-lector");
+  var sinMovimiento = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function el(tag, cls, texto) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (texto != null) n.textContent = texto;
+    return n;
+  }
+  function fechaLarga(iso) {
+    var p = (iso || "").split("-");
+    if (p.length !== 3) return "";
+    return Number(p[2]) + " de " + MESES[Number(p[1]) - 1] + " de " + p[0];
+  }
+  function datosObra(o) {
+    var partes = [o.genero, String(o.anio)];
+    if (o.paginas) partes.push(o.paginas + (o.paginas === 1 ? " página" : " páginas"));
+    if (o.minutos) partes.push(o.minutos + " min de lectura");
+    return partes.filter(Boolean).join(" · ");
+  }
+
+  /* ---------- Pintura ---------- */
+  function azar(semilla) {
+    return function () {
+      semilla = (semilla + 0x6D2B79F5) | 0;
+      var t = Math.imul(semilla ^ (semilla >>> 15), 1 | semilla);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function semillaDe(texto) {
+    var h = 2166136261;
+    for (var i = 0; i < texto.length; i++) { h ^= texto.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+  function token(nombre) {
+    return getComputedStyle(document.documentElement).getPropertyValue(nombre).trim();
+  }
+  function rgb(hex) {
+    var h = hex.replace("#", "");
+    if (h.length === 3) h = h.split("").map(function (c) { return c + c; }).join("");
+    var n = parseInt(h, 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  function rgba(c, a) { return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")"; }
+
+  function mancha(ctx, cx, cy, rx, ry, R, desorden, rot) {
+    var n = 22, pts = [];
+    rot = rot || 0;
+    for (var i = 0; i < n; i++) {
+      var a = (i / n) * Math.PI * 2;
+      var k = 1 + (R() - 0.5) * desorden;
+      var x = Math.cos(a) * rx * k, y = Math.sin(a) * ry * k;
+      pts.push([cx + x * Math.cos(rot) - y * Math.sin(rot), cy + x * Math.sin(rot) + y * Math.cos(rot)]);
+    }
+    ctx.beginPath();
+    var m0 = [(pts[0][0] + pts[n - 1][0]) / 2, (pts[0][1] + pts[n - 1][1]) / 2];
+    ctx.moveTo(m0[0], m0[1]);
+    for (var j = 0; j < n; j++) {
+      var p = pts[j], q = pts[(j + 1) % n];
+      ctx.quadraticCurveTo(p[0], p[1], (p[0] + q[0]) / 2, (p[1] + q[1]) / 2);
+    }
+    ctx.closePath();
+  }
+
+  function preparar(canvas) {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    var w = canvas.clientWidth || 300;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(w * dpr);
+    var ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, w);
+    return { ctx: ctx, S: w };
+  }
+
+  function pasosManzana(ctx, S, conTallo) {
+    var R = azar(7341);
+    var roja = rgb(token("--manzana")), verde = rgb(token("--hoja")), tinta = rgb(token("--tinta"));
+    var cx = S * 0.48, cy = S * 0.6, A = S * 0.3;
+    var pasos = [];
+
+    pasos.push(function () {
+      for (var i = 0; i < 10; i++) {
+        mancha(ctx, cx + (R() - 0.5) * A * 0.1, cy + A * 0.98, A * 0.85, A * 0.08, R, 0.25);
+        ctx.fillStyle = rgba(tinta, 0.035);
+        ctx.fill();
+      }
+    });
+    for (var c = 0; c < 44; c++) {
+      pasos.push(function () {
+        var j = function (f) { return (R() - 0.5) * A * f; };
+        var lobulos = [
+          [cx - A * 0.34 + j(0.08), cy - A * 0.06 + j(0.08), A * 0.76],
+          [cx + A * 0.34 + j(0.08), cy - A * 0.06 + j(0.08), A * 0.76],
+          [cx + j(0.08), cy + A * 0.2 + j(0.08), A * 0.7]
+        ];
+        lobulos.forEach(function (l) {
+          var r = l[2] * (0.9 + R() * 0.14);
+          mancha(ctx, l[0], l[1], r, r * 0.98, R, 0.12);
+          ctx.fillStyle = rgba(roja, 0.035 + R() * 0.035);
+          ctx.fill();
+          ctx.strokeStyle = rgba(roja, 0.07);
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        });
+      });
+    }
+    pasos.push(function () {
+      ctx.save();
+      for (var i = 0; i < 8; i++) {
+        mancha(ctx, cx - A * 0.42, cy - A * 0.28, A * 0.2, A * 0.28, R, 0.4, -0.5);
+        ctx.fillStyle = "rgba(255,255,255,0.07)";
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = "destination-out";
+      var mordida = [[cx + A * 1.1, cy + A * 0.02, A * 0.27], [cx + A * 1.02, cy - A * 0.34, A * 0.2], [cx + A * 1.02, cy + A * 0.38, A * 0.21]];
+      ctx.fillStyle = "rgba(0,0,0,1)";
+      mordida.forEach(function (m) { ctx.beginPath(); ctx.arc(m[0], m[1], m[2], 0, Math.PI * 2); ctx.fill(); });
+      ctx.restore();
+    });
+    pasos.push(function () {
+      ctx.save();
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      for (var pase = 0; pase < 2; pase++) {
+        ctx.strokeStyle = rgba(tinta, pase ? 0.35 : 0.8);
+        ctx.lineWidth = Math.max(1, S * (pase ? 0.003 : 0.0045));
+        ctx.beginPath();
+        var primero = true;
+        for (var t = 0.62; t <= Math.PI * 2 - 0.5; t += 0.05) {
+          var th = t;
+          var abolladura = 0.2 * Math.exp(-Math.pow(th - Math.PI * 1.5, 2) / 0.05) + 0.06 * Math.exp(-Math.pow(th - Math.PI * 0.5, 2) / 0.1);
+          var r = 1 - abolladura + (R() - 0.5) * 0.018;
+          var x = cx + S * 0.012 + Math.cos(th) * A * 1.1 * r;
+          var y = cy - S * 0.008 + Math.sin(th) * A * (th > Math.PI ? 0.86 : 0.92) * r;
+          if (primero) { ctx.moveTo(x, y); primero = false; } else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+      ctx.strokeStyle = rgba(tinta, 0.55);
+      ctx.lineWidth = Math.max(1, S * 0.003);
+      [[cx + A * 1.1, cy + A * 0.02, A * 0.27, 2.2, 4.1], [cx + A * 1.02, cy - A * 0.34, A * 0.2, 2.0, 3.6], [cx + A * 1.02, cy + A * 0.38, A * 0.21, 2.6, 4.3]].forEach(function (m) {
+        ctx.beginPath(); ctx.arc(m[0], m[1], m[2], m[3], m[4]); ctx.stroke();
+      });
+      ctx.restore();
+    });
+    if (conTallo) {
+      pasos.push(function () {
+        for (var i = 0; i < 16; i++) {
+          mancha(ctx, cx + A * 0.48, cy - A * 1.2, A * 0.34, A * 0.12, R, 0.18, -0.55);
+          ctx.fillStyle = rgba(verde, 0.06 + R() * 0.04);
+          ctx.fill();
+        }
+        ctx.strokeStyle = rgba(tinta, 0.5);
+        ctx.lineWidth = Math.max(1, S * 0.0025);
+        ctx.beginPath();
+        ctx.moveTo(cx + A * 0.2, cy - A * 1.0);
+        ctx.quadraticCurveTo(cx + A * 0.5, cy - A * 1.24, cx + A * 0.78, cy - A * 1.4);
+        ctx.stroke();
+      });
+      pasos.push(function () {
+        ctx.save();
+        var tam = A * 1.05;
+        ctx.font = tam + 'px "Gloock", Georgia, serif';
+        ctx.textBaseline = "alphabetic";
+        ctx.translate(cx + A * 0.02, cy - A * 0.78);
+        ctx.rotate(-0.12);
+        ctx.fillStyle = rgba(tinta, 0.92);
+        ctx.fillText("J", -tam * 0.18, 0);
+        ctx.restore();
+      });
+    }
+    return pasos;
+  }
+
+  function pintar(canvas, pasos, animar) {
+    if (!animar || sinMovimiento) { pasos.forEach(function (p) { p(); }); return; }
+    var i = 0;
+    (function cuadro() {
+      for (var k = 0; k < 2 && i < pasos.length; k++) pasos[i++]();
+      if (i < pasos.length) requestAnimationFrame(cuadro);
+    })();
+  }
+
+  function pintarManchita(canvas, nombreColor, semilla) {
+    var p = preparar(canvas), ctx = p.ctx, S = p.S;
+    var R = azar(semilla);
+    var c = rgb(token("--" + (nombreColor || "manzana")) || token("--manzana"));
+    for (var i = 0; i < 16; i++) {
+      mancha(ctx, S / 2 + (R() - 0.5) * S * 0.08, S / 2 + (R() - 0.5) * S * 0.08, S * 0.36, S * 0.32, R, 0.3, R() * 3);
+      ctx.fillStyle = rgba(c, 0.07 + R() * 0.06);
+      ctx.fill();
+    }
+  }
+
+  function grano() {
+    var c = document.createElement("canvas");
+    c.width = c.height = 180;
+    var ctx = c.getContext("2d");
+    var t = rgb(token("--tinta")), R = azar(99);
+    for (var i = 0; i < 2600; i++) {
+      ctx.fillStyle = rgba(t, R() * 0.05);
+      ctx.fillRect(R() * 180, R() * 180, 1, 1);
+    }
+    try { document.body.style.backgroundImage = "url(" + c.toDataURL() + ")"; } catch (e) {}
+  }
+
+  function pintarTodo(animar) {
+    var portada = $("manzana");
+    if (portada && !vistaIndice.hidden) { var p = preparar(portada); pintar(portada, pasosManzana(p.ctx, p.S, true), animar); }
+    var fin = $("manzana-fin");
+    if (fin && !vistaLector.hidden) { var f = preparar(fin); pintar(fin, pasosManzana(f.ctx, f.S, true), false); }
+    document.querySelectorAll("canvas.mancha").forEach(function (c) { pintarManchita(c, c.dataset.color, Number(c.dataset.semilla)); });
+    grano();
+  }
+
+  /* ---------- Índice ---------- */
+  function pintarIndice() {
+    var lista = $("lista");
+    lista.textContent = "";
+    $("conteo").textContent = catalogo.length + (catalogo.length === 1 ? " texto" : " textos");
+    $("anio-pie").textContent = String(new Date().getFullYear());
+    if (!catalogo.length) { lista.appendChild(el("li", "vacio", "Todavía no hay escritos publicados.")); return; }
+    catalogo.forEach(function (o) {
+      var li = el("li");
+      var a = el("a", "entrada");
+      a.href = "#" + o.slug;
+      var m = el("canvas", "mancha");
+      m.setAttribute("aria-hidden", "true");
+      m.dataset.color = o.color || "manzana";
+      m.dataset.semilla = String(semillaDe(o.slug));
+      a.appendChild(m);
+      var renglon = el("span", "renglon");
+      renglon.appendChild(el("span", "titulo", o.titulo));
+      renglon.appendChild(el("span", "puntos"));
+      renglon.appendChild(el("span", "maquina pp", o.paginas ? o.paginas + " pp." : ""));
+      a.appendChild(renglon);
+      a.appendChild(el("p", "maquina datos", o.genero + " · Publicado el " + fechaLarga(o.publicado)));
+      if (o.sinopsis) a.appendChild(el("p", "sinopsis", o.sinopsis));
+      li.appendChild(a);
+      lista.appendChild(li);
+    });
+  }
+
+  /* ---------- Lector ---------- */
+  var actual = null, turno = 0, docPdf = null, bytesPdf = null, anchoPintado = 0;
+
+  function mostrarIndice(animar) {
+    actual = null;
+    turno++;
+    vistaLector.hidden = true;
+    vistaIndice.hidden = false;
+    document.title = NOMBRE_SITIO;
+    pintarTodo(animar);
+  }
+
+  function mostrarLector(o) {
+    actual = o;
+    var miTurno = ++turno;
+    vistaIndice.hidden = true;
+    vistaLector.hidden = false;
+    window.scrollTo(0, 0);
+    document.title = o.titulo + " · " + NOMBRE_SITIO;
+    $("obra-datos").textContent = datosObra(o);
+    $("obra-titulo").textContent = o.titulo;
+    $("obra-sinopsis").textContent = o.sinopsis || "";
+    $("hojas").textContent = "";
+    $("fin").hidden = true;
+    $("error").hidden = true;
+    $("cargando").hidden = false;
+    pintarVecinos(o);
+    docPdf = null;
+    bytesPdf = null;
+
+    if (!window.pdfjsLib) { fallo(miTurno); return; }
+
+    fetch(o.archivo)
+      .then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.arrayBuffer(); })
+      .then(function (buf) {
+        if (miTurno !== turno) return null;
+        bytesPdf = buf;
+        return pdfjsLib.getDocument({ data: buf.slice(0) }).promise;
+      })
+      .then(function (doc) {
+        if (!doc || miTurno !== turno) return;
+        docPdf = doc;
+        $("cargando").hidden = true;
+        return pintarHojas(doc, miTurno);
+      })
+      .then(function () {
+        if (miTurno === turno && docPdf) { $("fin").hidden = false; pintarTodo(false); }
+      })
+      .catch(function () { fallo(miTurno); });
+  }
+
+  function fallo(miTurno) {
+    if (miTurno !== turno) return;
+    $("cargando").hidden = true;
+    $("error").hidden = false;
+  }
+
+  function pintarHojas(doc, miTurno) {
+    var cont = $("hojas");
+    cont.textContent = "";
+    var hojas = [];
+    for (var i = 1; i <= doc.numPages; i++) {
+      var h = el("figure", "hoja");
+      var lienzo = el("div", "lienzo");
+      lienzo.style.aspectRatio = "148 / 210";
+      var c = document.createElement("canvas");
+      c.setAttribute("aria-label", "Página " + i + " de " + doc.numPages);
+      lienzo.appendChild(c);
+      h.appendChild(lienzo);
+      h.appendChild(el("figcaption", "maquina folio", i + " / " + doc.numPages));
+      cont.appendChild(h);
+      hojas.push(h);
+    }
+    anchoPintado = cont.clientWidth;
+    var cadena = Promise.resolve();
+    hojas.forEach(function (h, idx) {
+      cadena = cadena.then(function () {
+        if (miTurno !== turno) return;
+        return doc.getPage(idx + 1).then(function (pagina) {
+          if (miTurno !== turno) return;
+          var lienzo = h.querySelector(".lienzo");
+          var base = pagina.getViewport({ scale: 1 });
+          lienzo.style.aspectRatio = base.width + " / " + base.height;
+          var ancho = Math.min(lienzo.clientWidth || cont.clientWidth, 576);
+          var dpr = Math.min(window.devicePixelRatio || 1, 3);
+          var vp = pagina.getViewport({ scale: (ancho / base.width) * dpr });
+          var c = h.querySelector("canvas");
+          c.width = Math.floor(vp.width);
+          c.height = Math.floor(vp.height);
+          return pagina.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise.then(function () {
+            h.classList.add("lista-hoja");
+          });
+        });
+      });
+    });
+    return cadena;
+  }
+
+  function pintarVecinos(o) {
+    var nav = $("vecinos");
+    nav.textContent = "";
+    var i = catalogo.indexOf(o);
+    var anterior = catalogo[i + 1], siguiente = catalogo[i - 1];
+    if (anterior) nav.appendChild(enlaceVecino(anterior, "← Anterior"));
+    if (siguiente) nav.appendChild(enlaceVecino(siguiente, "Siguiente →"));
+    if (!anterior && !siguiente) {
+      var a = el("a");
+      a.href = "#";
+      a.appendChild(el("span", "maquina", "Volver"));
+      a.appendChild(el("span", "t", "Índice de escritos"));
+      nav.appendChild(a);
+    }
+  }
+  function enlaceVecino(o, etiqueta) {
+    var a = el("a");
+    a.href = "#" + o.slug;
+    a.appendChild(el("span", "maquina", etiqueta));
+    a.appendChild(el("span", "t", o.titulo));
+    return a;
+  }
+
+  var espera = null, anchoVentana = window.innerWidth;
+  window.addEventListener("resize", function () {
+    clearTimeout(espera);
+    espera = setTimeout(function () {
+      if (Math.abs(window.innerWidth - anchoVentana) < 20) return;
+      anchoVentana = window.innerWidth;
+      pintarTodo(false);
+      if (!docPdf || vistaLector.hidden) return;
+      var w = $("hojas").clientWidth;
+      if (Math.abs(w - anchoPintado) < 40) return;
+      var miTurno = ++turno;
+      pintarHojas(docPdf, miTurno);
+    }, 250);
+  });
+
+  function alCambiarTema() { pintarTodo(false); }
+  if (window.matchMedia) {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mq.addEventListener) mq.addEventListener("change", alCambiarTema);
+  }
+  new MutationObserver(alCambiarTema).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  $("reintentar").addEventListener("click", function () { if (actual) mostrarLector(actual); });
+  $("volver").addEventListener("click", function (e) {
+    e.preventDefault();
+    if (location.hash) location.hash = ""; else mostrarIndice(false);
+  });
+
+  /* ---------- Rutas ---------- */
+  function enrutar(animar) {
+    var slug = decodeURIComponent(location.hash.replace(/^#/, ""));
+    var obra = null;
+    for (var i = 0; i < catalogo.length; i++) if (catalogo[i].slug === slug) obra = catalogo[i];
+    if (obra) mostrarLector(obra); else mostrarIndice(animar === true);
+  }
+  window.addEventListener("hashchange", function () { enrutar(false); });
+  pintarIndice();
+  enrutar(false);
+  var fuentes = document.fonts && document.fonts.load ? document.fonts.load('80px "Gloock"') : Promise.resolve();
+  fuentes.then(function () { if (!vistaIndice.hidden) pintarTodo(true); }, function () {});
+})();
+</script>
+
+</body></html>
