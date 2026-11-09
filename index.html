@@ -6,20 +6,31 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#FFFFFF">
 <title>Manzana J</title>
-<meta name="description" content="Escritos de Juan Hinestroza: cuentos para leer en línea o descargar en PDF.">
+<meta name="description" content="Manzana J, el alter ego de Juan Hinestroza: cuentos para leer en línea o descargar en PDF.">
 <meta name="author" content="Juan Hinestroza">
+<link rel="canonical" href="https://juanhinestroza.github.io/ManzanaJ/">
+<meta property="og:site_name" content="Manzana J">
 <meta property="og:title" content="Manzana J">
-<meta property="og:description" content="Escritos de Juan Hinestroza.">
+<meta property="og:description" content="Cuentos de Manzana J, el alter ego de Juan Hinestroza.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="img/manzana-grabado.webp">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFFFFF'/%3E%3Ctext x='35' y='50' text-anchor='middle' font-family='UnifrakturMaguntia,Georgia,serif' font-size='52' fill='%23E4312B'%3EJ%3C/text%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='UnifrakturMaguntia,Georgia,serif' font-size='52' fill='%23FFFFFF' stroke='%230E0E0E' stroke-width='1.5'%3EJ%3C/text%3E%3C/svg%3E">
-<link rel="preload" as="image" href="img/manzana-grabado.webp" fetchpriority="high">
+<meta property="og:locale" content="es_CO">
+<meta property="og:url" content="https://juanhinestroza.github.io/ManzanaJ/">
+<meta property="og:image" content="https://juanhinestroza.github.io/ManzanaJ/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="El sello de Manzana J: una manzana abierta con un barrio, un río y una corona de espinas adentro.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icono-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icono-192.png">
+<link rel="apple-touch-icon" href="img/icono-180.png">
+<link rel="preload" as="image" href="img/sello.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Archivo:wdth,wght@62..125,300..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap">
 <style>
-/* Layout: página blanca y sobria. El grabado de la manzana con el logotipo gótico en capas como única pieza
-   llamativa; índice con el grabado de cada cuento junto a su título, todo lo demás en letra sencilla.
+/* Layout: página blanca y sobria. El sello de Manzana J (la manzana abierta) con el logotipo gótico en capas
+   como única pieza llamativa, y el mismo sello al pie; índice con el grabado de cada cuento junto a su título,
+   todo lo demás en letra sencilla.
    Un solo tema claro a propósito: la página se ve blanca aunque el teléfono esté en modo oscuro. */
 :root {
   --fondo: #FFFFFF;
@@ -170,9 +181,10 @@ button { font: inherit; color: inherit; }
   font-size: var(--cuerpo);
   line-height: 1;
 }
-.lema { grid-column: 1; grid-row: 3; margin: 0; color: var(--gris); }
-.acciones { grid-column: 1 / -1; grid-row: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }
-.nuevo { grid-column: 2; grid-row: 3; margin: 0; text-align: right; justify-self: end; color: var(--gris); }
+.alter { grid-column: 1 / -1; grid-row: 2; margin: -0.5rem 0 0; text-align: center; color: var(--gris); }
+.lema { grid-column: 1; grid-row: 4; margin: 0; color: var(--gris); }
+.acciones { grid-column: 1 / -1; grid-row: 3; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }
+.nuevo { grid-column: 2; grid-row: 4; margin: 0; text-align: right; justify-self: end; color: var(--gris); }
 .nuevo .raya-corta::after { margin-left: auto; }
 .nuevo a { color: var(--tinta); }
 .nuevo a:hover { color: var(--rojo); }
@@ -181,6 +193,8 @@ button { font: inherit; color: inherit; }
   .escena { --cuerpo: min(12.5vw, 11rem); display: block; }
   .grabado-portada { width: auto; height: min(38rem, 72vh); max-height: 44vw; min-height: 25rem; }
   .marca { bottom: 9%; }
+  /* La leyenda queda en la misma franja que el botón: misma altura de renglón y 1 rem del borde */
+  .alter { margin: 0; padding-bottom: 1rem; line-height: 2.75rem; }
   .lema { position: absolute; top: 2rem; left: 0; z-index: 3; }
   .acciones { position: absolute; bottom: 1rem; left: 0; z-index: 3; }
   .nuevo { position: absolute; bottom: 1rem; right: 0; z-index: 3; }
@@ -226,10 +240,13 @@ button { font: inherit; color: inherit; }
 }
 .vacio { padding-block: 2rem; color: var(--gris); }
 
-.pie { padding-block: 2.5rem 3rem; }
-.pie .marco { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem 2rem; color: var(--gris); }
+/* Pie como colofón: el sello, la firma y quién está detrás */
+.pie { padding-block: 3.5rem 3.5rem; }
+.pie .marco { display: grid; justify-items: center; gap: 0.3rem; text-align: center; color: var(--gris); }
 .pie p { margin: 0; }
-.pie .firma { font-size: 1.35rem; text-transform: none; letter-spacing: 0; }
+.sello-pie { display: block; width: 4.75rem; height: auto; margin-bottom: 0.6rem; }
+.pie .firma { font-size: 1.6rem; }
+.pie .derechos { margin-top: 0.9rem; }
 
 /* ---------- Lector ---------- */
 .cabeza-obra { padding-block: clamp(1.5rem, 5vw, 3rem) 1.5rem; display: grid; gap: 0.85rem; justify-items: start; }
@@ -268,7 +285,6 @@ button { font: inherit; color: inherit; }
 .aviso .mayus { color: var(--gris); }
 
 .fin { padding-block: 1.5rem 3.5rem; display: grid; gap: 2.25rem; justify-items: center; }
-.manzanita { width: 6rem; height: auto; }
 .vecinos { width: 100%; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1.25rem; border-top: 1px solid var(--linea); }
 .vecinos a { display: grid; gap: 0.25rem; min-width: 0; }
 .vecinos a:last-child { text-align: right; margin-left: auto; }
@@ -347,7 +363,7 @@ button { font: inherit; color: inherit; }
     "genero": "Cuento",
     "anio": 2026,
     "publicado": "2026-11-07",
-    "paginas": 3,
+    "paginas": 4,
     "minutos": 4,
     "sinopsis": "Un hombre que lee el porvenir en las torceduras de su cuerpo carga desde hace una semana un cuchillo sin mango en el corazón, y sale a caminar para descifrarlo.",
     "archivo": "textos/desvarios-metafisicos-del-cuerpo.pdf",
@@ -361,7 +377,7 @@ button { font: inherit; color: inherit; }
     "genero": "Cuento",
     "anio": 2026,
     "publicado": "2026-11-07",
-    "paginas": 3,
+    "paginas": 4,
     "minutos": 3,
     "sinopsis": "Una velación masiva en el Chocó, donde los dolientes miden su pena por el número de balas y ya nadie sabe a qué muerto llora.",
     "archivo": "textos/sobrecosto-de-muertos.pdf",
@@ -375,7 +391,7 @@ button { font: inherit; color: inherit; }
     "genero": "Cuento",
     "anio": 2026,
     "publicado": "2026-11-07",
-    "paginas": 5,
+    "paginas": 6,
     "minutos": 7,
     "sinopsis": "Un carro atascado en la berma de una carretera bananera, dos amantes, un atardecer y el segundo exacto en que todo pudo ser distinto.",
     "archivo": "textos/barro-y-bananos.pdf",
@@ -389,7 +405,7 @@ button { font: inherit; color: inherit; }
 <div id="vista-indice">
   <nav class="nav" aria-label="Principal">
     <div class="marco">
-      <span class="mayus izq solo-ancho">Juan Hinestroza</span>
+      <span class="izq" aria-hidden="true"></span>
       <a class="firma" href="#" aria-label="Manzana J, inicio">Manzana <span class="j">J</span></a>
       <a class="mayus der" href="#indice">Índice</a>
     </div>
@@ -398,9 +414,10 @@ button { font: inherit; color: inherit; }
   <header class="marco portada">
     <div class="escena">
       <div class="cuadro">
-        <img class="grabado-portada" src="img/manzana-grabado.webp" width="912" height="1072" alt="Grabado de una manzana abierta: adentro hay un barrio de casas apiladas con escaleras y cables, ceñido por una corona de espinas." fetchpriority="high">
+        <img class="grabado-portada" src="img/sello.webp" width="968" height="1131" alt="El sello de Manzana J: una manzana abierta y, adentro, un barrio de casas apiladas con escaleras, matas de plátano y unas trenzas que bajan y se vuelven río hasta una casa de palafito, todo ceñido por una corona de espinas." fetchpriority="high">
         <h1 class="marca"><span class="gotico"><span class="sombra" aria-hidden="true">Manzana J</span><span class="linea">Manzana J</span></span></h1>
       </div>
+      <p class="alter mayus">Alter ego de Juan Hinestroza</p>
       <p class="lema mayus raya-corta">Hagamos<br>literatura,<br>empañá los<br>vidrios.</p>
       <div class="acciones">
         <a class="boton" id="leer-ultimo" href="#">Leer el último</a>
@@ -419,9 +436,11 @@ button { font: inherit; color: inherit; }
   </main>
 
   <footer class="pie">
-    <div class="marco mayus">
-      <span class="firma" aria-hidden="true">Manzana <span class="j">J</span></span>
-      <p>© <span id="anio-pie">2026</span> Juan Hinestroza · Todos los derechos reservados</p>
+    <div class="marco">
+      <img class="sello-pie" src="img/sello-mini.webp" width="300" height="351" alt="" loading="lazy" decoding="async">
+      <span class="firma">Manzana <span class="j">J</span></span>
+      <p class="mayus">Alter ego de Juan Hinestroza</p>
+      <p class="mayus derechos">© <span id="anio-pie">2026</span> · Todos los derechos reservados</p>
     </div>
   </footer>
 </div>
@@ -454,7 +473,6 @@ button { font: inherit; color: inherit; }
     <div class="hojas" id="hojas"></div>
 
     <footer class="fin" id="fin" hidden>
-      <img class="manzanita" src="img/manzana-grabado-mini.webp" width="420" height="494" alt="" loading="lazy" decoding="async">
       <nav class="vecinos" id="vecinos" aria-label="Otros escritos"></nav>
     </footer>
   </article>
